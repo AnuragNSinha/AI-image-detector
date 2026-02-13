@@ -140,3 +140,24 @@ button:hover {
   flex: 1;
   min-width: 150px;
 }
+/* Button style */
+.theme-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Light mode */
+body.light-mode {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: black;
+}
+
+body.light-mode .container {
+  background: rgba(255,255,255,0.8);
+  color: black;
+}
