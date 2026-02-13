@@ -178,14 +178,45 @@ toggleBtn.addEventListener("click", () => {
     localStorage.setItem("theme", "dark");
   }
 });
+  const dropArea = document.getElementById("dropArea");
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+
+// Click to open file
+dropArea.addEventListener("click", () => input.click());
+
+// Drag events
+dropArea.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  dropArea.classList.add("dragging");
+});
+
+dropArea.addEventListener("dragleave", () => {
+  dropArea.classList.remove("dragging");
+});
+
+dropArea.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dropArea.classList.remove("dragging");
+
+  const file = e.dataTransfer.files[0];
+  input.files = e.dataTransfer.files;
+
+  preview.style.display = "block";
+  preview.src = URL.createObjectURL(file);
+});
+
+input.addEventListener("change", function() {
+  const file = this.files[0];
+  if (file) {
+    preview.style.display = "block";
+    preview.src = URL.createObjectURL(file);
+  }
+});
+
+const resultLabel = document.getElementById("resultLabel");
+const confidenceText = document.getElementById("confidenceText");
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
