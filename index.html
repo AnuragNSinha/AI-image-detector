@@ -81,11 +81,21 @@ form.addEventListener("submit", async function(e) {
   const percentage = parseFloat(text.match(/\d+(\.\d+)?/)[0]);
 
   resultText.innerText = text;
-  progressFill.style.width = percentage + "%";
+progressFill.style.width = percentage + "%";
+
+// Color logic
+if (percentage > 50) {
+  // AI generated probability high
+  progressFill.style.background = "linear-gradient(to right, #ff4b4b, #ff0000)";
+} else {
+  // Real image probability high
+  progressFill.style.background = "linear-gradient(to right, #00ff87, #00c851)";
+}
 });
 </script>
 
 </body>
 </html>
+
 
 
