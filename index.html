@@ -10,20 +10,33 @@
   <h1>AI Image Detector</h1>
   <p>Upload an image to analyze whether it is AI generated or real.</p>
 
-  <form action="/upload" method="post" enctype="multipart/form-data">
+  <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
     
     <input type="file" name="image" id="imageInput" required>
-    
-    <!-- Image Preview -->
+
     <img id="preview" src="" alt="" style="display:none; width:100%; margin-top:10px; border-radius:10px;">
 
     <button type="submit">Analyze Image</button>
   </form>
+
+  <!-- Loading -->
+  <div id="loading" style="display:none; margin-top:15px;">
+    <div class="spinner"></div>
+    <p>Analyzing image...</p>
+  </div>
+
+  <!-- Result -->
+  <div id="result" class="result-card" style="display:none;">
+    Result will appear here
+  </div>
 </div>
 
 <script>
 const input = document.getElementById("imageInput");
 const preview = document.getElementById("preview");
+const form = document.getElementById("uploadForm");
+const loading = document.getElementById("loading");
+const result = document.getElementById("result");
 
 input.addEventListener("change", function() {
   const file = this.files[0];
@@ -31,6 +44,10 @@ input.addEventListener("change", function() {
     preview.style.display = "block";
     preview.src = URL.createObjectURL(file);
   }
+});
+
+form.addEventListener("submit", function() {
+  loading.style.display = "block";
 });
 </script>
 
