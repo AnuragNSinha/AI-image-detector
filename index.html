@@ -12,19 +12,18 @@
 
   <form id="uploadForm" enctype="multipart/form-data">
 
-  <!-- Drag & Drop Box -->
-  <div id="dropArea" class="drop-area">
-  <div class="upload-icon">⬆️</div>
-  <p><b>Drag & Drop Image Here</b></p>
-  <p>or Click to Select</p>
-  <input type="file" name="image" id="imageInput" required hidden>
-</div>
+    <div id="dropArea" class="drop-area">
+      <div class="upload-icon">⬆️</div>
+      <p><b>Drag & Drop Image Here</b></p>
+      <p>or Click to Select</p>
+      <input type="file" name="image" id="imageInput" required hidden>
+    </div>
 
-  <!-- Preview -->
-  <img id="preview" style="display:none;" />
+    <img id="preview" style="display:none;" />
 
-  <button type="submit">Analyze Image</button>
-</form>
+    <button type="submit">Analyze Image</button>
+  </form>
+
   <!-- Loading -->
   <div id="loading" style="display:none;">
     <div class="spinner"></div>
@@ -32,27 +31,53 @@
   </div>
 
   <!-- Result -->
-<div id="result" class="result-card" style="display:none;">
-  <h3 id="resultLabel"></h3>
-  <p id="confidenceText"></p>
+  <div id="result" class="result-card" style="display:none;">
+    <h3 id="resultLabel"></h3>
+    <p id="confidenceText"></p>
 
-  <div class="progress-bar">
-    <div id="progressFill"></div>
+    <div class="progress-bar">
+      <div id="progressFill"></div>
+    </div>
   </div>
+
 </div>
 
 <script>
-const resultLabel = document.getElementById("resultLabel");
-const confidenceText = document.getElementById("confidenceText");
+const dropArea = document.getElementById("dropArea");
 const input = document.getElementById("imageInput");
 const preview = document.getElementById("preview");
 const form = document.getElementById("uploadForm");
 const loading = document.getElementById("loading");
 const resultBox = document.getElementById("result");
-const resultText = document.getElementById("resultText");
+const resultLabel = document.getElementById("resultLabel");
+const confidenceText = document.getElementById("confidenceText");
 const progressFill = document.getElementById("progressFill");
 
-// Preview image
+// Click to open file
+dropArea.addEventListener("click", () => input.click());
+
+// Drag events
+dropArea.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  dropArea.classList.add("dragging");
+});
+
+dropArea.addEventListener("dragleave", () => {
+  dropArea.classList.remove("dragging");
+});
+
+dropArea.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dropArea.classList.remove("dragging");
+
+  const file = e.dataTransfer.files[0];
+  input.files = e.dataTransfer.files;
+
+  preview.style.display = "block";
+  preview.src = URL.createObjectURL(file);
+});
+
+// Preview when selecting normally
 input.addEventListener("change", function() {
   const file = this.files[0];
   if (file) {
@@ -82,33 +107,23 @@ form.addEventListener("submit", async function(e) {
 
   const percentage = parseFloat(text.match(/\d+(\.\d+)?/)[0]);
 
-progressFill.style.width = percentage + "%";
+  progressFill.style.width = percentage + "%";
 
-if (percentage > 50) {
-  resultLabel.innerText = "AI Generated: " + percentage + "%";
-  progressFill.style.background = "linear-gradient(to right, #ff4b4b, #ff0000)";
-} else {
-  resultLabel.innerText = "Real Image: " + percentage + "%";
-  progressFill.style.background = "linear-gradient(to right, #00ff87, #00c851)";
-}
+  if (percentage > 50) {
+    resultLabel.innerText = "AI Generated: " + percentage + "%";
+    progressFill.style.background = "linear-gradient(to right, #ff4b4b, #ff0000)";
+  } else {
+    resultLabel.innerText = "Real Image: " + percentage + "%";
+    progressFill.style.background = "linear-gradient(to right, #00ff87, #00c851)";
+  }
 
-// Confidence level
-if (percentage > 75 || percentage < 25) {
-  confidenceText.innerText = "Confidence: High";
-} else if (percentage > 60 || percentage < 40) {
-  confidenceText.innerText = "Confidence: Medium";
-} else {
-  confidenceText.innerText = "Confidence: Low";
-}
-
-// Color logic
-if (percentage > 50) {
-  // AI generated probability high
-  progressFill.style.background = "linear-gradient(to right, #ff4b4b, #ff0000)";
-} else {
-  // Real image probability high
-  progressFill.style.background = "linear-gradient(to right, #00ff87, #00c851)";
-}
+  if (percentage > 75 || percentage < 25) {
+    confidenceText.innerText = "Confidence: High";
+  } else if (percentage > 60 || percentage < 40) {
+    confidenceText.innerText = "Confidence: Medium";
+  } else {
+    confidenceText.innerText = "Confidence: Low";
+  }
 });
 </script>
 
