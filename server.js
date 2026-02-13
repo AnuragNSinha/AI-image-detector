@@ -71,3 +71,5 @@ input.addEventListener("change", function() {
     preview.src = URL.createObjectURL(file);
   }
 });
+const resultLabel = document.getElementById("resultLabel");
+const confidenceText = document.getElementById("confidenceText");
