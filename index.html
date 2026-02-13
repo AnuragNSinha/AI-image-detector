@@ -5,10 +5,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="navbar">
+  <h2 class="logo">AI Image Detector</h2>
+  <button id="themeToggle" class="theme-btn">🌙 Dark</button>
+</div>
 <div class="container">
   <button id="themeToggle" class="theme-btn">Toggle Mode</button>
-  <h1>AI Image Detector</h1>
+
   <p>Upload an image to analyze whether it is AI generated or real.</p>
 
   <form id="uploadForm" enctype="multipart/form-data">
@@ -178,6 +181,7 @@ toggleBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
