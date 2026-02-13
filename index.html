@@ -159,13 +159,26 @@ form.addEventListener("submit", async function(e) {
 });
   const toggleBtn = document.getElementById("themeToggle");
 
+// Page load hone par saved theme apply karo
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+}
+
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("light-mode");
+
+  // Theme save karo
+  if (document.body.classList.contains("light-mode")) {
+    localStorage.setItem("theme", "light");
+  } else {
+    localStorage.setItem("theme", "dark");
+  }
 });
 </script>
 
 </body>
 </html>
+
 
 
 
