@@ -2,16 +2,37 @@
 <html>
 <head>
   <title>AI Image Detector</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Upload Image</h2>
+<div class="container">
+  <h1>AI Image Detector</h1>
+  <p>Upload an image to analyze whether it is AI generated or real.</p>
 
-<form action="/upload" method="post" enctype="multipart/form-data">
-  <input type="file" name="image" required>
-  <button type="submit">Analyze</button>
-</form>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    
+    <input type="file" name="image" id="imageInput" required>
+    
+    <!-- Image Preview -->
+    <img id="preview" src="" alt="" style="display:none; width:100%; margin-top:10px; border-radius:10px;">
+
+    <button type="submit">Analyze Image</button>
+  </form>
+</div>
+
+<script>
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+
+input.addEventListener("change", function() {
+  const file = this.files[0];
+  if (file) {
+    preview.style.display = "block";
+    preview.src = URL.createObjectURL(file);
+  }
+});
+</script>
 
 </body>
-
 </html>
