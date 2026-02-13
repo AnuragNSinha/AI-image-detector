@@ -184,3 +184,29 @@ body.light-mode .container {
 .container {
   margin-top: 70px;
 }
+/* Mobile Responsive */
+@media (max-width: 600px) {
+
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .result-wrapper {
+    flex-direction: column;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .theme-btn {
+    position: static;
+  }
+
+  button {
+    width: 100%;
+  }
+}
