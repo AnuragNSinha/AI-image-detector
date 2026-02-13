@@ -11,14 +11,19 @@
   <p>Upload an image to analyze whether it is AI generated or real.</p>
 
   <form id="uploadForm" enctype="multipart/form-data">
-    <input type="file" name="image" id="imageInput" required>
 
-    <!-- Preview -->
-    <img id="preview" style="display:none;" />
+  <!-- Drag & Drop Box -->
+  <div id="dropArea" class="drop-area">
+    <p>Drag & Drop Image Here</p>
+    <p>or Click to Select</p>
+    <input type="file" name="image" id="imageInput" required hidden>
+  </div>
 
-    <button type="submit">Analyze Image</button>
-  </form>
+  <!-- Preview -->
+  <img id="preview" style="display:none;" />
 
+  <button type="submit">Analyze Image</button>
+</form>
   <!-- Loading -->
   <div id="loading" style="display:none;">
     <div class="spinner"></div>
@@ -81,3 +86,4 @@ form.addEventListener("submit", async function(e) {
 
 </body>
 </html>
+
