@@ -32,6 +32,16 @@
 
   <!-- Result -->
   <div id="result" class="result-card" style="display:none;">
+  <h3 id="resultLabel"></h3>
+  <p id="confidenceText"></p>
+
+  <div class="progress-bar">
+    <div id="progressFill"></div>
+  </div>
+
+  <button id="downloadBtn" style="margin-top:10px;">Download Report</button>
+</div>
+  <div id="result" class="result-card" style="display:none;">
     <h3 id="resultLabel"></h3>
     <p id="confidenceText"></p>
 
@@ -129,3 +139,4 @@ form.addEventListener("submit", async function(e) {
 
 </body>
 </html>
+
