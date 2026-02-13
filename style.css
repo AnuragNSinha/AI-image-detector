@@ -119,3 +119,24 @@ button:hover {
 #downloadBtn:hover {
   transform: scale(1.05);
 }
+.result-wrapper {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.image-card {
+  flex: 1;
+  min-width: 150px;
+}
+
+.image-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.result-card {
+  flex: 1;
+  min-width: 150px;
+}
