@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
 <div class="navbar">
   <h2 class="logo">AI Image Detector</h2>
   <button id="themeToggle" class="theme-btn">🌙 Dark</button>
 </div>
+
 <div class="container">
-  <button id="themeToggle" class="theme-btn">Toggle Mode</button>
 
   <p>Upload an image to analyze whether it is AI generated or real.</p>
 
@@ -34,31 +36,23 @@
   </div>
 
   <!-- Result -->
-<div class="result-wrapper">
+  <div class="result-wrapper">
 
-  <div class="image-card">
-    <img id="preview" style="display:none;" />
-  </div>
-
-  <div id="result" class="result-card" style="display:none;">
-    <h3 id="resultLabel"></h3>
-    <p id="confidenceText"></p>
-
-    <div class="progress-bar">
-      <div id="progressFill"></div>
+    <div class="image-card">
+      <img id="preview" style="display:none;" />
     </div>
 
-    <button id="downloadBtn" style="margin-top:10px;">Download Report</button>
-  </div>
+    <div id="result" class="result-card" style="display:none;">
+      <h3 id="resultLabel"></h3>
+      <p id="confidenceText"></p>
 
-</div>
-  <div id="result" class="result-card" style="display:none;">
-    <h3 id="resultLabel"></h3>
-    <p id="confidenceText"></p>
+      <div class="progress-bar">
+        <div id="progressFill"></div>
+      </div>
 
-    <div class="progress-bar">
-      <div id="progressFill"></div>
+      <button id="downloadBtn" style="margin-top:10px;">Download Report</button>
     </div>
+
   </div>
 
 </div>
@@ -74,11 +68,12 @@ const resultBox = document.getElementById("result");
 const resultLabel = document.getElementById("resultLabel");
 const confidenceText = document.getElementById("confidenceText");
 const progressFill = document.getElementById("progressFill");
+const toggleBtn = document.getElementById("themeToggle");
 
-// Click to open file
+
+// Drag & Drop
 dropArea.addEventListener("click", () => input.click());
 
-// Drag events
 dropArea.addEventListener("dragover", (e) => {
   e.preventDefault();
   dropArea.classList.add("dragging");
@@ -99,7 +94,7 @@ dropArea.addEventListener("drop", (e) => {
   preview.src = URL.createObjectURL(file);
 });
 
-// Preview when selecting normally
+// Preview
 input.addEventListener("change", function() {
   const file = this.files[0];
   if (file) {
@@ -133,10 +128,8 @@ form.addEventListener("submit", async function(e) {
 
   if (percentage > 50) {
     resultLabel.innerText = "AI Generated: " + percentage + "%";
-    progressFill.style.background = "linear-gradient(to right, #ff4b4b, #ff0000)";
   } else {
     resultLabel.innerText = "Real Image: " + percentage + "%";
-    progressFill.style.background = "linear-gradient(to right, #00ff87, #00c851)";
   }
 
   if (percentage > 75 || percentage < 25) {
@@ -147,7 +140,9 @@ form.addEventListener("submit", async function(e) {
     confidenceText.innerText = "Confidence: Low";
   }
 });
-  downloadBtn.addEventListener("click", function() {
+
+// Download report
+downloadBtn.addEventListener("click", function() {
 
   const reportText =
     resultLabel.innerText + "\n" +
@@ -161,9 +156,8 @@ form.addEventListener("submit", async function(e) {
   link.download = "result-report.txt";
   link.click();
 });
-  const toggleBtn = document.getElementById("themeToggle");
 
-// Page load hone par saved theme apply karo
+// Theme toggle
 if (localStorage.getItem("theme") === "light") {
   document.body.classList.add("light-mode");
 }
@@ -171,69 +165,13 @@ if (localStorage.getItem("theme") === "light") {
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("light-mode");
 
-  // Theme save karo
   if (document.body.classList.contains("light-mode")) {
     localStorage.setItem("theme", "light");
   } else {
     localStorage.setItem("theme", "dark");
   }
 });
-const input = document.getElementById("imageInput");
-const preview = document.getElementById("preview");
-
-// Click to open file
-dropArea.addEventListener("click", () => input.click());
-
-// Drag events
-dropArea.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  dropArea.classList.add("dragging");
-});
-
-dropArea.addEventListener("dragleave", () => {
-  dropArea.classList.remove("dragging");
-});
-
-dropArea.addEventListener("drop", (e) => {
-  e.preventDefault();
-  dropArea.classList.remove("dragging");
-
-  const file = e.dataTransfer.files[0];
-  input.files = e.dataTransfer.files;
-
-  preview.style.display = "block";
-  preview.src = URL.createObjectURL(file);
-});
-
-input.addEventListener("change", function() {
-  const file = this.files[0];
-  if (file) {
-    preview.style.display = "block";
-    preview.src = URL.createObjectURL(file);
-  }
-});
-
-const resultLabel = document.getElementById("resultLabel");
-const confidenceText = document.getElementById("confidenceText");
-  const form = document.getElementById("uploadForm");
-
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-
-  const response = await fetch("/upload", {
-    method: "POST",
-    body: formData
-  });
-
-  const result = await response.text();
-
-  alert(result);
-});
 </script>
 
 </body>
 </html>
-
-
