@@ -7,6 +7,7 @@
 <body>
 
 <div class="container">
+  <button id="themeToggle" class="theme-btn">Toggle Mode</button>
   <h1>AI Image Detector</h1>
   <p>Upload an image to analyze whether it is AI generated or real.</p>
 
@@ -156,10 +157,16 @@ form.addEventListener("submit", async function(e) {
   link.download = "result-report.txt";
   link.click();
 });
+  const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+});
 </script>
 
 </body>
 </html>
+
 
 
 
