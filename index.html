@@ -21,7 +21,7 @@
       <div class="upload-icon">⬆️</div>
       <p><b>Drag & Drop Image Here</b></p>
       <p>or Click to Select</p>
-      <input type="file" name="image" id="imageInput" required hidden>
+      <input type="file" id="imageInput" name="image" hidden>
     </div>
 
     <button type="submit">Analyze Image</button>
@@ -216,7 +216,24 @@ input.addEventListener("change", function() {
 
 const resultLabel = document.getElementById("resultLabel");
 const confidenceText = document.getElementById("confidenceText");
+  const form = document.getElementById("uploadForm");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  const response = await fetch("/upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const result = await response.text();
+
+  alert(result);
+});
 </script>
 
 </body>
 </html>
+
