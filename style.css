@@ -77,3 +77,26 @@ button:hover {
   background: linear-gradient(to right, #00ff87, #60efff);
   transition: width 0.5s ease;
 }
+.drop-area {
+  border: 2px dashed white;
+  padding: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 15px 0;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.drop-area:hover {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.02);
+}
+
+.drop-area.dragging {
+  background: rgba(255,255,255,0.2);
+}
+
+.upload-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
