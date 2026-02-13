@@ -42,6 +42,8 @@
 </div>
 
 <script>
+const resultLabel = document.getElementById("resultLabel");
+const confidenceText = document.getElementById("confidenceText");
 const input = document.getElementById("imageInput");
 const preview = document.getElementById("preview");
 const form = document.getElementById("uploadForm");
@@ -80,8 +82,24 @@ form.addEventListener("submit", async function(e) {
 
   const percentage = parseFloat(text.match(/\d+(\.\d+)?/)[0]);
 
-  resultText.innerText = text;
 progressFill.style.width = percentage + "%";
+
+if (percentage > 50) {
+  resultLabel.innerText = "AI Generated: " + percentage + "%";
+  progressFill.style.background = "linear-gradient(to right, #ff4b4b, #ff0000)";
+} else {
+  resultLabel.innerText = "Real Image: " + percentage + "%";
+  progressFill.style.background = "linear-gradient(to right, #00ff87, #00c851)";
+}
+
+// Confidence level
+if (percentage > 75 || percentage < 25) {
+  confidenceText.innerText = "Confidence: High";
+} else if (percentage > 60 || percentage < 40) {
+  confidenceText.innerText = "Confidence: Medium";
+} else {
+  confidenceText.innerText = "Confidence: Low";
+}
 
 // Color logic
 if (percentage > 50) {
@@ -96,7 +114,3 @@ if (percentage > 50) {
 
 </body>
 </html>
-
-
-
-
