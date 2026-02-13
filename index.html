@@ -18,7 +18,14 @@
 
     <button type="submit">Analyze Image</button>
   </form>
+<!-- Result -->
+<div id="result" class="result-card" style="display:none;">
+  <p id="resultText"></p>
 
+  <div class="progress-bar">
+    <div id="progressFill"></div>
+  </div>
+</div>
   <!-- Loading -->
   <div id="loading" style="display:none; margin-top:15px;">
     <div class="spinner"></div>
@@ -49,7 +56,31 @@ input.addEventListener("change", function() {
 form.addEventListener("submit", function() {
   loading.style.display = "block";
 });
+  form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  loading.style.display = "block";
+  result.style.display = "none";
+
+  const formData = new FormData(form);
+
+  const response = await fetch("/upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const text = await response.text();
+
+  loading.style.display = "none";
+  result.style.display = "block";
+
+  const percentage = parseFloat(text.match(/\d+(\.\d+)?/)[0]);
+
+  document.getElementById("resultText").innerText = text;
+  document.getElementById("progressFill").style.width = percentage + "%";
+});
 </script>
 
 </body>
 </html>
+
