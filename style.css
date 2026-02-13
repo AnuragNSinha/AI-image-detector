@@ -8,6 +8,27 @@ body {
   align-items: center;
 }
 
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(8px);
+  color: white;
+}
+
+.logo {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* Container */
 .container {
   background: rgba(255,255,255,0.15);
   padding: 30px;
@@ -16,12 +37,10 @@ body {
   text-align: center;
   color: white;
   width: 350px;
+  margin-top: 70px;
 }
 
-input[type="file"] {
-  margin: 10px 0;
-}
-
+/* Buttons */
 button {
   background: linear-gradient(to right, #00c6ff, #0072ff);
   border: none;
@@ -35,48 +54,22 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Preview image */
+/* Theme button */
+.theme-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* File input preview */
 #preview {
   width: 100%;
   margin-top: 10px;
   border-radius: 10px;
 }
 
-/* Spinner */
-.spinner {
-  border: 5px solid rgba(255,255,255,0.3);
-  border-top: 5px solid white;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 10px auto;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
-/* Result card */
-.result-card {
-  margin-top: 15px;
-}
-
-/* Progress bar */
-.progress-bar {
-  width: 100%;
-  height: 20px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-#progressFill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(to right, #00ff87, #60efff);
-  transition: width 0.5s ease;
-}
+/* Drag Drop */
 .drop-area {
   border: 2px dashed white;
   padding: 30px;
@@ -100,25 +93,23 @@ button:hover {
   font-size: 40px;
   margin-bottom: 10px;
 }
-.result-card {
-  margin-top: 15px;
-  padding: 15px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
-}
-#downloadBtn {
-  background: linear-gradient(to right, #ff9966, #ff5e62);
-  border: none;
-  padding: 10px 18px;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+
+/* Spinner */
+.spinner {
+  border: 5px solid rgba(255,255,255,0.3);
+  border-top: 5px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 10px auto;
 }
 
-#downloadBtn:hover {
-  transform: scale(1.05);
+@keyframes spin {
+  100% { transform: rotate(360deg); }
 }
+
+/* Result Layout */
 .result-wrapper {
   display: flex;
   gap: 15px;
@@ -139,16 +130,32 @@ button:hover {
 .result-card {
   flex: 1;
   min-width: 150px;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
 }
-/* Button style */
-.theme-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #00ff87, #60efff);
+  transition: width 0.5s ease;
+}
+
+/* Download button */
+#downloadBtn {
+  background: linear-gradient(to right, #ff9966, #ff5e62);
 }
 
 /* Light mode */
@@ -161,29 +168,7 @@ body.light-mode .container {
   background: rgba(255,255,255,0.8);
   color: black;
 }
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 12px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(8px);
-  color: white;
-}
 
-.logo {
-  margin: 0;
-  font-size: 20px;
-}
-
-/* Container thoda niche lane ke liye */
-.container {
-  margin-top: 70px;
-}
 /* Mobile Responsive */
 @media (max-width: 600px) {
 
@@ -200,10 +185,6 @@ body.light-mode .container {
     flex-direction: column;
     gap: 8px;
     text-align: center;
-  }
-
-  .theme-btn {
-    position: static;
   }
 
   button {
