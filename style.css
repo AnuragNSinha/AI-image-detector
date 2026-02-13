@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+
+  /* Modern gradient background */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Glass card */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 40px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  color: white;
+  width: 350px;
+}
+
+/* Heading */
+h1 {
+  margin-bottom: 10px;
+}
+
+/* File input */
+input[type="file"] {
+  margin: 15px 0;
+}
+
+/* Button */
+button {
+  background: #00c6ff;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
