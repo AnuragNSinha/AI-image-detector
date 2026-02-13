@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<input type="email" id="email" placeholder="Email"><br><br>
+<input type="password" id="password" placeholder="Password"><br><br>
+
+<button onclick="login()">Login</button>
+
+<!-- Firebase scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+<script>
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAYGeinIo0kQKC7QKI-unVwxY5_r4glI4g",
+    authDomain: "ai-image-detector-1f970.firebaseapp.com",
+    projectId: "ai-image-detector-1f970",
+    storageBucket: "ai-image-detector-1f970.firebasestorage.app",
+    messagingSenderId: "193330599935",
+    appId: "1:193330599935:web:2890135f7e80f1e80779ca",
+    measurementId: "G-0PGPT5BFY8"
+  };
+
+
+firebase.initializeApp(firebaseConfig);
+
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      window.location.href = "index.html";
+    })
+    .catch(error => alert(error.message));
+}
+
+</script>
+
+</body>
+</html>
