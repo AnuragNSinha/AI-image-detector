@@ -19,8 +19,6 @@
       <input type="file" name="image" id="imageInput" required hidden>
     </div>
 
-    <img id="preview" style="display:none;" />
-
     <button type="submit">Analyze Image</button>
   </form>
 
@@ -31,15 +29,23 @@
   </div>
 
   <!-- Result -->
-  <div id="result" class="result-card" style="display:none;">
-  <h3 id="resultLabel"></h3>
-  <p id="confidenceText"></p>
+<div class="result-wrapper">
 
-  <div class="progress-bar">
-    <div id="progressFill"></div>
+  <div class="image-card">
+    <img id="preview" style="display:none;" />
   </div>
 
-  <button id="downloadBtn" style="margin-top:10px;">Download Report</button>
+  <div id="result" class="result-card" style="display:none;">
+    <h3 id="resultLabel"></h3>
+    <p id="confidenceText"></p>
+
+    <div class="progress-bar">
+      <div id="progressFill"></div>
+    </div>
+
+    <button id="downloadBtn" style="margin-top:10px;">Download Report</button>
+  </div>
+
 </div>
   <div id="result" class="result-card" style="display:none;">
     <h3 id="resultLabel"></h3>
@@ -154,5 +160,6 @@ form.addEventListener("submit", async function(e) {
 
 </body>
 </html>
+
 
 
